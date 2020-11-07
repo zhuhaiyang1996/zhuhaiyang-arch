@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/zhuhaiyang/.config/Wallpapers/05.jpg' 
