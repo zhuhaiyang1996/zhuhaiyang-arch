@@ -94,3 +94,14 @@ let g:lightline = {
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
+
+
+"vim-markdown
+let g:vim_markdown_conceal_code_blocks = 0 "显示代码框
+let g:vim_markdown_folding_disabled = 1
+
+
+aug i3config_ft_detection
+  au!
+  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+aug end

@@ -1,0 +1,19 @@
+{
+    "markdownlint.onSave": true,
+    "markdownlint.onOpen": true,
+    "markdownlint.fixAll": true,
+    "markdownlint.config": {
+        "MD029": {
+            "style":"one_or_ordered"
+        },
+        "MD033": {
+               "allowed_elements" :["center","font","sub","h2"]
+        },
+    
+        "MD025": {
+               "level": 2
+        },
+        "MD018": false,
+        "MD014": false
+    }  
+}

@@ -1,0 +1,186 @@
+# Markdown
+
+# Includes octopress (http://octopress.org/) snippets
+
+# The suffix `c` stands for "Clipboard".
+snippet back "back to index"
+test
+endsnippet
+
+snippet [
+	[${1:text}](http://${2:address})
+snippet [*
+	[${1:link}](${2:`@*`})
+snippet [c
+	[${1:link}](${2:`@+`})
+snippet ["
+	[${1:text}](http://${2:address} "${3:title}")
+snippet ["*
+	[${1:link}](${2:`@*`} "${3:title}")
+snippet ["c
+	[${1:link}](${2:`@+`} "${3:title}")
+snippet [:
+	[${1:id}]: http://${2:url}
+
+snippet [:*
+	[${1:id}]: ${2:`@*`}
+
+snippet [:c
+	[${1:id}]: ${2:`@+`}
+
+snippet [:"
+	[${1:id}]: http://${2:url} "${3:title}"
+
+snippet [:"*
+	[${1:id}]: ${2:`@*`} "${3:title}"
+
+snippet [:"c
+	[${1:id}]: ${2:`@+`} "${3:title}"
+
+snippet ![
+	![${1:alttext}](${2:/images/image.jpg})
+snippet ![*
+	![${1:alt}](${2:`@*`})
+snippet ![c
+	![${1:alt}](${2:`@+`})
+snippet !["
+	![${1:alttext}](${2:/images/image.jpg} "${3:title}")
+snippet !["*
+	![${1:alt}](${2:`@*`} "${3:title}")
+snippet !["c
+	![${1:alt}](${2:`@+`} "${3:title}")
+snippet ![:
+	![${1:id}]: ${2:url}
+
+snippet ![:*
+	![${1:id}]: ${2:`@*`}
+
+snippet ![:"
+	![${1:id}]: ${2:url} "${3:title}"
+
+snippet ![:"*
+	![${1:id}]: ${2:`@*`} "${3:title}"
+
+snippet ![:"c
+	![${1:id}]: ${2:`@+`} "${3:title}"
+
+snippet <
+	<http://${1:url}>
+snippet <*
+	<`@*`>
+snippet <c
+	<`@+`>
+snippet **
+	**${1:bold}**
+snippet __
+	__${1:bold}__
+snippet ===
+	`repeat('=', strlen(getline(line(".") - 1)) - strlen(getline('.')))`
+
+	${0}
+snippet -
+	-   ${0}
+snippet ---
+	`repeat('-', strlen(getline(line(".") - 1)) - strlen(getline('.')))`
+
+	${0}
+
+snippet blockquote
+	{% blockquote %}
+	${0:quote}
+	{% endblockquote %}
+
+snippet blockquote-author
+	{% blockquote ${1:author}, ${2:title} %}
+	${0:quote}
+	{% endblockquote %}
+
+snippet blockquote-link
+	{% blockquote ${1:author} ${2:URL} ${3:link_text} %}
+	${0:quote}
+	{% endblockquote %}
+
+snippet ```
+	\`\`\`
+	${1:code}
+	\`\`\`
+
+# Language.
+snippet ```l
+	\`\`\`${1:language}
+	${2:code}
+	\`\`\`
+
+snippet codeblock-short
+	{% codeblock %}
+	${0:code_snippet}
+	{% endcodeblock %}
+
+snippet codeblock-full
+	{% codeblock ${1:title} lang:${2:language} ${3:URL} ${4:link_text} %}
+	${0:code_snippet}
+	{% endcodeblock %}
+
+snippet gist-full
+	{% gist ${1:gist_id} ${0:filename} %}
+
+snippet gist-short
+	{% gist ${0:gist_id} %}
+
+snippet img
+	{% img ${1:class} ${2:URL} ${3:width} ${4:height} ${5:title_text} ${0:alt_text} %}
+
+snippet youtube
+	{% youtube ${0:video_id} %}
+
+# The quote should appear only once in the text. It is inherently part of it.
+# See http://octopress.org/docs/plugins/pullquote/ for more info.
+
+snippet pullquote
+	{% pullquote %}
+	${1:text} {" ${2:quote} "} ${0:text}
+	{% endpullquote %}
+
+
+snippet today "今日计划"
+	# 今日计划	
+	
+	## 一件能获得成就感的事情
+	- 
+
+	## 必须要完成的事件
+	-
+	- 
+
+	## sunrise 时间分解	
+	将任务分解为半小时一段的 sunrise 小任务
+
+	## Daily Do
+	- 回答人生的意义
+	- 跑步三公里
+	- 做一件让身边的人觉得幸福的事情
+	- 至少写一百行代码, 无论是抄还是自写
+
+	## Daily Don't
+	- 不要抱怨
+	- 不要打开即时聊天工具，回家后。急事电话，重要不紧急邮件。
+	- 不要迟到
+	- 不要吃过饱
+endsnippet
+
+snippet table
+	Format Table by :TableFormat
+	|   |   |   |   |   |
+	|---|---|---|---|---|
+	|   |   |   |   |   |
+	|   |   |   |   |   |
+	|   |   |   |   |   |
+snippet arg_table
+	| Name  | Type   | Description          |
+	|-------|--------|----------------------|
+	| ${1:city}  | ${2:String} | ${3:城市名，例如 Yantai}  |
+snippet css
+	<style type="text/css">
+	${1:code}
+	</style>
+endsnippet

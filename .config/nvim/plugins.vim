@@ -17,11 +17,8 @@ Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr'
 
 "markdown
-Plug 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
 Plug 'plasticboy/vim-markdown'
 Plug 'mzlogin/vim-markdown-toc'
-Plug 'reedes/vim-pencil'
-Plug 'Konfekt/FastFold'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 "markdown
@@ -102,6 +99,7 @@ Plug 'morhetz/gruvbox'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+Plug 'mboughaba/i3config.vim'
 call plug#end()
 
 " 使用 ss 启用
