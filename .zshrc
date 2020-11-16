@@ -129,8 +129,8 @@ zinit snippet OMZ::lib/theme-and-appearance.zsh
 source ~/.config/Dotfile/zsh/.aliases
 source ~/.config/Dotfile/zsh/.functions
 
-# nnn config file 
-export NNN_COLORS='2641' 
+# nnn config file
+export NNN_COLORS='2641'
 export NNN_OPTS="Eeao"
 export NNN_PLUG='u:getplugs;p:preview-tui;i:imgthumb;d:dragdrop;m:nmount;s:suedit'
 
