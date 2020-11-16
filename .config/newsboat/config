@@ -1,0 +1,87 @@
+auto-reload yes
+reload-time 120
+reload-threads 4
+download-retries 4
+download-timeout 10
+prepopulate-query-feeds yes
+
+player mpv
+
+# general settings
+# auto-reload yes
+# max-items 50
+
+# external-url-viewer "urlscan -dc -r 'linkhandler {}'"
+external-url-viewer "urlview"
+bind-key U show-urls
+
+# externel browser
+# browser "w3m %u"
+browser "elinks %u"
+# browser linkhandler
+# macro , open-in-browser
+
+# macros are active when prefixed with a comma (example: ,v)
+
+# works perfectly with youtube
+macro a set browser "tsp youtube-dl --add-metadata --extract-audio -xic -f bestaudio/best --output '$HOME/media/%(title)s.%(ext)s'; open-in-browser ; set browser "elinks %u"
+
+# works perfectly with youtube
+macro p set browser "tsp mpv --no-video %u"; open-in-browser ; set browser "elinks %u"
+
+macro m set browser "tsp mpv %u"; open-in-browser ; set browser "elinks %u"
+
+macro v set browser "setsid mpv --no-video"; open-in-browser ; set browser "elinks %u"
+
+macro n set browser "tsp mpv --ytdl --ontop --no-border --force-window --autofit=960x540 --geometry=-20-50 %u > /dev/null &"; open-in-browser ; set browser "elinks %u"
+
+
+# unbind keys
+unbind-key ENTER
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+
+# bind keys - vim style
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+
+bind-key l open
+bind-key h quit
+
+# solarized
+color background         default   default
+color listnormal         default   default
+color listnormal_unread  default   default
+color listfocus          black     cyan
+color listfocus_unread   black     cyan
+color info               default   black
+color article            default   default
+
+# highlights
+# highlight article "^(Title):.*$" blue default
+# highlight article "https?://[^ ]+" red default
+# highlight article "\\[image\\ [0-9]+\\]" green default
+
+# highlight all "---.*---" yellow
+
+
+highlight all "---.*---" yellow
+highlight feedlist ".*(0/0))" black
+highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
+highlight article "(^Link:.*|^Date:.*)" default default
+highlight article "https?://[^ ]+" green default
+highlight article "^(Title):.*$" blue default
+highlight article "\\[[0-9][0-9]*\\]" magenta default bold
+highlight article "\\[image\\ [0-9]+\\]" green default bold
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
+highlight article ":.*\\(link\\)$" cyan default
+highlight article ":.*\\(image\\)$" blue default
+highlight article ":.*\\(embedded flash\\)$" magenta default
