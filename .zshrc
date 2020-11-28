@@ -61,20 +61,9 @@ zinit ice wait lucid
 zinit snippet OMZ::plugins/systemadmin/systemadmin.plugin.zsh
 
 zinit ice wait lucid
-zinit snippet OMZ::plugins/golang/golang.plugin.zsh
-
-zinit ice wait lucid
 zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 
-zinit ice wait lucid as'completion' blockf
-zinit snippet OMZ::plugins/ripgrep/_ripgrep
-
-
-
 # Plugins
-zinit ice depth=1 lucid
-zinit light trystan2k/zsh-tab-title
-
 zinit ice depth=1 wait lucid
 zinit light Aloxaf/fzf-tab
 
@@ -87,15 +76,6 @@ zinit light zdharma/fast-syntax-highlighting
 zinit ice depth=1 wait lucid compile"{src/*.zsh,src/strategies/*.zsh}" atload"_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 
-zinit ice depth=1 wait lucid atload"bindkey '$terminfo[kcuu1]' history-substring-search-up; bindkey '$terminfo[kcud1]' history-substring-search-down"
-zinit light zsh-users/zsh-history-substring-search
-
-zinit ice depth=1 wait lucid
-zinit light wfxr/formarks
-
-zinit ice depth=1 wait"1" lucid pick"manydots-magic" compile"manydots-magic"
-zinit light knu/zsh-manydots-magic
-
 zinit ice depth=1 wait"1" lucid atinit"zstyle ':history-search-multi-word' page-size '20'"
 zinit light zdharma/history-search-multi-word
 
@@ -104,9 +84,6 @@ zinit light wfxr/forgit
 
 zinit ice depth=1 wait"2" lucid
 zinit light hlissner/zsh-autopair
-
-zinit ice depth=1 wait"2" lucid
-zinit light peterhurford/up.zsh
 
 zinit ice depth=1 wait"2" lucid
 zinit light MichaelAquilina/zsh-you-should-use
@@ -166,7 +143,7 @@ n ()
     fi
 }
 
-PATH=$HOME/.cargo/bin:$HOME/bin:/bin:/usr/bin:/usr/local/bin:~/.local/bin:/usr/local/go/bin:~/go/bin:${PATH}
+PATH=/usr/local/texlive/2020/bin/x86_64-linux:$HOME/.cargo/bin:$HOME/bin:/bin:/usr/bin:/usr/local/bin:~/.local/bin:/usr/local/go/bin:~/go/bin:${PATH}
 export PATH
 
 # lf file manager
