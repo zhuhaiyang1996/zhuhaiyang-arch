@@ -1,0 +1,339 @@
+###############################################################################
+#My setting
+
+# font for window titles and bar
+font pango:UbuntuMono Nerd Font Mono 10
+
+new_window pixel
+
+# define names for workspaces
+# 为工作空间定义名称
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+# 切换到工作区
+bindsym $mod+1 workspace number $ws1, exec --no-startup-id alacritty
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+
+## 切换当前软件到工作区
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+
+# => 新建窗口的分割方向
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# => 移动窗口
+## Modify // Window Position // <><Shift> ↑ ↓ ← → ##
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# => 布局切换
+# 切换到堆叠布局
+# bindsym $mod+z layout stacking
+# 切换到标签布局
+# bindsym $mod+x layout tabbed
+# 切换到平铺布局（竖直/水平）
+# bindsym $mod+c layout toggle split
+# 在所有布局中轮回切换
+bindsym $mod+x layout toggle all
+# 窗口切换到全屏
+bindsym $mod+f fullscreen toggle
+# 窗口切换到浮动
+bindsym $mod+Shift+f floating toggle
+# 窗口切换为粘滞
+bindsym $mod+g sticky toggle
+
+
+# => 暂存窗口（额外的可隐藏浮动窗口，取消浮动还原成普通窗口）
+# 呼出/隐藏暂存窗口
+bindsym $mod+Ctrl+a scratchpad show
+# 转换普通窗口为暂存窗口
+bindsym $mod+Ctrl+m move to scratchpad
+
+# => 电源管理（Pause Break键呼出)
+set $mode_system 系统:锁屏(L) 注销(O) 关机(S) 重启(R) 取消(Esc)
+bindsym Pause mode "$mode_system"
+mode "$mode_system" {
+    bindsym l exec "betterlockscreen -l blur u ~/Pictures/Wallpapers"
+    bindsym o exec i3-msg exit
+    bindsym s exec systemctl poweroff
+    bindsym r exec systemctl reboot
+    bindsym Escape mode "default"
+}
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+## Resize // Enter Resize Mode // <> r ##
+##进入调整界面大小模式
+mode "Resize Mode" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        ## Resize // Resize Window // ↑ ↓ ← → ##
+        bindsym Left resize shrink width 6 px or 6 ppt
+        bindsym Down resize grow height 6 px or 6 ppt
+        bindsym Up resize shrink height 6 px or 6 ppt
+        bindsym Right resize grow width 6 px or 6 ppt
+
+        bindsym Shift+Left resize shrink width 12 px or 12 ppt
+        bindsym Shift+Down resize grow height 12 px or 12 ppt
+        bindsym Shift+Up resize shrink height 12 px or 12 ppt
+        bindsym Shift+Right resize grow width 12 px or 12 ppt
+
+        ## Resize // Resize Window // k j h l ##
+        bindsym h resize shrink width 6 px or 6 ppt
+        bindsym k resize grow height 6 px or 6 ppt
+        bindsym j resize shrink height 6 px or 6 ppt
+        bindsym l resize grow width 6 px or 6 ppt
+
+        bindsym Shift+h resize shrink width 12 px or 12 ppt
+        bindsym Shift+k resize grow height 12 px or 12 ppt
+        bindsym Shift+j resize shrink height 12 px or 12 ppt
+        bindsym Shift+l resize grow width 12 px or 12 ppt
+
+        ## Resize // Window Gaps // + - ##
+        bindsym minus gaps inner current minus 6
+        bindsym plus gaps inner current plus 6
+        bindsym Shift+minus gaps inner current minus 12
+        bindsym Shift+plus gaps inner current plus 12
+
+        ## Resize // Exit Resize Mode // Escape or Enter ## 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "Resize Mode"
+
+###############################################################################
+# Session Management
+## Session // Exit App(退出应用程序) // <><Shift> q ##
+bindsym $mod+Shift+q kill
+
+## Session // Reload i3 Config(重新加载i3配置) // <><Shift> c ##
+bindsym $mod+Shift+c reload
+
+## Session // Restart i3 // <><Ctrl> r ##
+bindsym $mod+Ctrl+r restart
+
+# assign program to workspace
+assign [class="Alacritty"]          → $ws1
+assign [class="terminal"]           → $ws1
+assign [class="Sublime"]            → $ws2
+assign [class="Chromium"]           → $ws3
+assign [class="Firefox"]            → $ws3
+assign [class="File-roller"]        → $ws4
+assign [class="Pcmanfm"]            → $ws4
+assign [class="Evince"]             → $ws5
+assign [class="ghostwriter"]        → $ws5
+assign [class="libreoffice"]        → $ws5
+assign [class="Audacious"]          → $ws6
+assign [class="vlc"]                → $ws6
+assign [class="Gimp"]               → $ws7
+assign [class="Inkscape"]           → $ws7
+assign [class="Hexchat"]            → $ws8
+assign [class="Telegram"]           → $ws8
+assign [class="Upwork"]             → $ws8
+assign [class="Galculator"]         → $ws9
+assign [class="Gnome-font-viewer"]  → $ws9
+assign [class="Go-for-it"]          → $ws9
+assign [class="Gucharmap"]          → $ws9
+assign [class="KeePassXC"]          → $ws9
+assign [class="Transmission-gtk"]   → $ws9
+assign [class="Bleachbit"]          → $ws10
+
+###############################################################################
+
+## Modify // Settings // <> c ##
+bindsym $mod+c exec gnome-control-center
+
+## Modify // Wifi Settings // <> w ##
+bindsym $mod+w exec gnome-control-center wifi
+
+## Modify // Bluetooth Settings // <> b ##
+bindsym $mod+b exec gnome-control-center bluetooth
+
+## Launch // File Browser // <><Shift> n ##
+bindsym $mod+Shift+n exec nemo
+
+## Launch // Terminal // <Super> Enter ##
+bindsym $mod+Return exec alacritty
+
+# Launch // VSCode
+bindsym $mod+Shift+v exec code-insiders
+
+# Launch // typora
+bindsym $mod+Shift+m exec typora
+
+## Launch // Browser // <><Shift> Enter ##
+bindsym $mod+Shift+Return exec microsoft-edge-dev
+
+# start rofi  Launch // Application // <> Space ##
+bindsym $mod+space exec --no-startup-id zsh -c "rofi -show drun -theme oxide"
+
+bindsym $mod+Tab exec --no-startup-id rofi -show window -theme oxide
+
+
+###############################################################################
+
+## Modify // Containing Workspace // <><Ctrl><Shift> ↑ ↓ ← → ##
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+Down move workspace to output down
+bindsym $mod+Ctrl+Shift+Up move workspace to output up
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
+
+## Modify // Next Window Orientation // <> Backspace ##
+bindsym $mod+BackSpace split toggle
+
+## Modify // Tile/Float Focus Toggle // <><Shift> t ##
+bindsym $mod+Shift+t focus mode_toggle
+
+## Modify // Window Layout Mode // <> t ##
+bindsym $mod+t layout toggle tabbed splith splitv
+
+## Navigate // Relative Window // <> ↑ ↓ ← → ##
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+
+## Navigate // Next Workspace // <><Alt> → ##
+bindsym $mod+$alt+Right workspace next
+
+## Navigate // Previous Workspace // <><Shift> Tab ##
+bindsym $mod+Shift+Tab workspace prev
+
+## Navigate // Previous Workspace // <><Alt> ← ##
+bindsym $mod+$alt+Left workspace prev
+
+
+# startup applications
+#设置壁纸
+exec_always --no-startup-id feh --bg-fill ~/.config/Dotfile/Wallpapers/05.jpg
+
+exec_always --no-startup-id xrandr --output Virtual-1 --mode "1366x768"  
+#启动picom(实现背景透明)
+exec_always --no-startup-id picom
+
+###############################################################################
+# Meta Key Mappings
+# Alt key is Mod1, and Windows key is Mod4
+###############################################################################
+
+set $mod Mod4
+set $alt Mod1
+
+###############################################################################
+# Workspace Management
+###############################################################################
+# Toggle bar visibility
+#隱藏 bar
+## Modify // Toggle Bar // <> i ##
+bindsym $mod+i bar mode toggle
+
+# Cause Settings app to float above tiled windows
+floating_maximum_size -1 x -1
+for_window [class="Gnome-control-center"] floating enable
+
+# window border settings
+# 桌面边框设置
+# => 窗口边框类型（边框类型有normal正常/none无边框/pixel 1 自定义宽度）
+# 默认普通窗口的边框类型
+new_window pixel     2
+
+# 取消工作区边缘的边框
+hide_edge_borders both
+
+# 在三种边框类型中切换
+# shortcut to change window border
+bindsym $mod+n border normal    0
+bindsym $mod+y border pixel     1
+bindsym $mod+u border none
+
+
+# betterlockscreen
+bindsym $mod+Shift+p exec betterlockscreen -l blur u ~/Pictures/Wallpapers
+exec_always --no-startup-id betterlockscreen -w dim u ~/Pictures/Wallpapers
+
+# run polybar 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# i3-gaps
+# i3-gaps 间隙设置
+smart_gaps on
+gaps inner 4
+gaps outer 2
+
+
+bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:UbuntuMono Nerd Font Mono 10" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit" -B "    Lock " "betterlockscreen -l blur && pkill i3-nagbar" -B "    Reboot " "pkill i3-nagbar && reboot" -B "    Shutdown " "pkill i3-nagbar && shutdown -h now"
+
+# 窗口颜色                边框    背景    文字    提示
+client.focused          #333333 #333333 #FFFFFF #333333
+client.focused_inactive #999999 #999999 #FFFFFF #3399FF
+client.unfocused        #999999 #999999 #FFFFFF #3399FF
+client.urgent           #990000 #990000 #FFFFFF #990000
+client.placeholder      #000000 #000000 #FFFFFF #000000
+client.background       #FFFFFF
+
+#Attach to a running tmux session or create a new one. Since this script starts a new #terminal it can also been used with a keybinding from your favorite window-manager.
+#bindsym $mod+p exec --no-startup-id ~/.config/rofi/scripts/tmux_session.sh
+
+bindsym $mod+p exec --no-startup-id ~/.config/rofi/scripts/finder.sh
+
+#音量调节 pip install pulsemixer
+bindsym $mod+plus		    exec --no-startup-id pulsemixer --change-volume +5 && pkill -RTMIN+10 i3blocks
+bindsym $mod+Shift+plus		exec --no-startup-id pulsemixer --change-volume +20 && pkill -RTMIN+10 i3blocks
+bindsym $mod+minus 		    exec --no-startup-id pulsemixer --change-volume -5 && pkill -RTMIN+10 i3blocks
+bindsym $mod+Shift+minus	exec --no-startup-id  pulsemixer --change-volume -15 && pkill -RTMIN+10 i3blocks
+
+#音乐mpd，mpc
+bindsym $mod+less 		    exec --no-startup-id mpc prev
+bindsym $mod+Shift+less		exec --no-startup-id mpc seek 0%
+bindsym $mod+greater		exec --no-startup-id mpc next
+bindsym $mod+Shift+greater	exec --no-startup-id mpc next
+# For advancing forward/backward in an mpd song
+bindsym $mod+bracketleft 	    exec --no-startup-id mpc seek -10
+bindsym $mod+Shift+bracketleft 	exec --no-startup-id mpc seek -120
+bindsym $mod+bracketright 	    exec --no-startup-id mpc seek +10
+bindsym $mod+Shift+bracketright exec --no-startup-id mpc seek +120
+
+# For screenshots and recording
+#截图
+bindsym Print 			    exec flameshot gui
+
+# Show selection:
+bindsym $mod+Insert		exec --no-startup-id notify-send "📋 Clipboard contents:" "$(xclip -o -selection clipboard)"
+
+#STOP/HIDE EVERYTHING:
+bindsym $mod+Shift+Delete	exec --no-startup-id pulsemixer --mute ; exec --no-startup-id mpc pause && pkill -RTMIN+10 i3blocks ; exec --no-startup-id pauseallmpv; workspace 0; exec $term -e htop ; exec $term -e lf
+
