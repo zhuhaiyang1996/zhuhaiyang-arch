@@ -173,3 +173,25 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 pythonenv3.8/*
+
+.config/Dotfile/bin/*
+
+#history file
+.zsh_history
+.tig_history
+.mycli-history
+.zcompdump
+.Xauthority
+.wget-hsts
+.vim_mru_files
+.rnd
+.python_history
+.pathmarks
+.gem/*
+.pki/*
+.w3m/*
+anaconda3/*
+.config/Notepadqq/backupCache/*
+.wget-hsts
+.p10k.zsh
+.ssh/*
