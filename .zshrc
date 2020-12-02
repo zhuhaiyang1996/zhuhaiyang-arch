@@ -143,7 +143,9 @@ n ()
     fi
 }
 
-PATH=/usr/local/texlive/2020/bin/x86_64-linux:$HOME/.cargo/bin:$HOME/bin:/bin:/usr/bin:/usr/local/bin:~/.local/bin:/usr/local/go/bin:~/go/bin:${PATH}
+export ANACONDA_HOME=$HOME/anaconda3/bin
+export TexLive_HOME=/usr/local/texlive/2020/bin/x86_64-linux
+PATH=$ANACONDA_HOME:$TexLive_HOME:$HOME/.cargo/bin:/bin:/usr/bin:/usr/local/bin:~/.local/bin:/usr/local/go/bin:~/go/bin:${PATH}
 export PATH
 
 # lf file manager
@@ -309,3 +311,19 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/zhuhaiyang/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/zhuhaiyang/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/zhuhaiyang/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/zhuhaiyang/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
