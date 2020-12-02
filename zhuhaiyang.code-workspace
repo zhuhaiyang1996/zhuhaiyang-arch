@@ -1,0 +1,50 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": false,
+			"**/.gem": true,
+			"**/.java": true,
+			"**/.cache": true,
+			"**/.elinks": true,
+			"**/.npm": true,
+			"**/.pki": true,
+			"**/.zinit": true,
+			"**/go": true,
+			"**/Mail": true,
+			"**/bin": true,
+			"**/.w3m": true,
+			"**/.mume": true,
+			"**/.vscode-insiders": true,
+			"**/.vscode-server-insiders": true,
+			"**/.zsh_history": true,
+			"**/.zcompdump": true,
+			"**/.python_history": true,
+			"**/.ssh": true,
+			"**/.pip": true,
+			"**/.bash*": true,
+			"**/.muttrc*": true,
+			"**/.nvimlog*": true,
+			"**/.tig_history*": true,
+			"**/.mutt_certificates": true,
+			"**/.config/GitHub Desktop": true,
+			"**/.gtkrc-2.0": true,
+			"**/.p10k.zsh": true,
+			"**/.config/coc": true,
+			"**/.config/obsidian": true,
+			"**/.config/Code - Insiders": true,
+			"**/.config/JetBrains": true,
+			"**/.config/microsoft-edge-dev": true,
+			"**/.cargo": true,
+			"**/.mycli-history": true,
+			"**/.vim_mru_files": true,
+			"**/.texlive2020": true,
+			"**/anaconda3": true,
+		},
+	},
+
+}
