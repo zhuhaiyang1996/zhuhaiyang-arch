@@ -13,7 +13,7 @@ alias tmux="tmux -f ~/.config/tmux/tmux.conf"
 alias mycli="mycli --myclirc ~/.config/mycli/.myclirc"
 alias neomutt="neomutt -F ~/.config/neomutt/.muttrc "
 alias z="zathura"
-
+#alias pandoc="pandoc --pdf-engine=xelatex --template=~/.pandoc/templates/pm-template.latex'"
 # Typos
 alias :q='exit'
 alias help='man'
