@@ -1,0 +1,5 @@
+#!/bin/sh
+
+feh --bg-fill ~/.config/Dotfile/Wallpapers/05.jpg &
+
+exec $HOME/.config/polybar/bspwm/bspwm.sh &
