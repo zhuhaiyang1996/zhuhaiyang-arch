@@ -1,0 +1,39 @@
+name: obsidian-to-anki
+parent: default
+
+matches:
+  # Target Core Deck
+  - trigger: ";deck-core"
+    replace: |
+              TARGET DECK
+              ⭐ Core
+  
+  # Cloze Section
+  - trigger: ";cloze"
+    replace: "{{c1::$|$}}"
+
+  # Cloze Card
+  - trigger: ";card-cloze"
+    replace: |
+              START
+              Cloze
+              $|$
+              END
+
+              ---
+
+  # Basic Card
+  - trigger: ";card-basic"
+    replace: |
+              START
+              Basic
+              $|$
+              Answer: 
+              END
+
+              ---
+
+  # Add Anki Section
+  - trigger: ";ankify"
+    replace: "---\n\n## Ankify\nFILE TAGS\n$|$\n\n---\n\n"
+              

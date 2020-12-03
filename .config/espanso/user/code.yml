@@ -1,0 +1,144 @@
+filter_title: "Code"
+backend: "Clipboard"
+
+matches:
+  - trigger: "::rn-comp"
+    vars:
+      - name: name
+        type: shell
+        params:
+          cmd: "~/Library/Preferences/espanso/scripts/Prompt.ps1 -text name"
+    replace: |
+      import React from 'react';
+      import { View, StyleSheet } from 'react-native';
+      interface {{name}}Props
+      {
+          
+      }
+      export default function {{name}}({
+      }:{{name}}Props){
+          return (
+              <View style={styles.root}>
+              </View>
+          )
+      }
+      const styles=StyleSheet.create({
+          root:{
+              flex:1
+          }
+      });
+  - trigger: "::rn-tcomp"
+    vars:
+      - name: name
+        type: shell
+        params:
+          cmd: "~/Library/Preferences/espanso/scripts/Prompt.ps1 -text name"
+    replace: |
+      import React from 'react';
+      import { View } from 'react-native';
+      import { ThemeManager } from '../lib/style';
+      interface {{name}}Props
+      {
+          
+      }
+      export default function {{name}}({
+      }:{{name}}Props){
+          return (
+              <View style={styles.root}>
+              </View>
+          )
+      }
+      const styles=ThemeManager.createSheet(()=>({
+          root:{
+              flex:1
+          }
+      }));
+  
+  - trigger: "::re-comp"
+    vars:
+      - name: name
+        type: shell
+        params:
+          cmd: "~/Library/Preferences/espanso/scripts/Prompt.ps1 -text name"
+    replace: |
+      import React from 'react';
+      interface {{name}}Props
+      {
+          
+      }
+      export default function {{name}}({
+      }:{{name}}Props){
+          return (
+              <div>
+                  Component
+              </div>
+          )
+      }
+  
+  - trigger: "::re-ncomp"
+    vars:
+      - name: name
+        type: shell
+        params:
+          cmd: "~/Library/Preferences/espanso/scripts/Prompt.ps1 -text name"
+    replace: |
+      import React from 'react';
+      import {createStyleSheet} from '../CommonJs/CommonReact';
+      interface {{name}}Props
+      {
+          
+      }
+      export default function {{name}}({
+      }:{{name}}Props){
+          return (
+              <div style={styles.root}>
+                  Component
+              </div>
+          );
+      }
+      const styles=createStyleSheet({
+          root:{
+              flex:1,
+          }
+      });
+  - trigger: "::js-prop"
+    vars:
+      - name: name
+        type: shell
+        params:
+          cmd: "~/Library/Preferences/espanso/scripts/Prompt.ps1 -text name"
+      - name: type
+        type: shell
+        params:
+          cmd: "~/Library/Preferences/espanso/scripts/Prompt.ps1 -text type"
+      - name: defaultValue
+        type: shell
+        params:
+          cmd: "~/Library/Preferences/espanso/scripts/Prompt.ps1 -text defaultValue"
+    replace: |
+      private _{{name}}:{{type}}={{defaultValue}};
+          public get {{name}}(){return this._{{name}}}
+          public set {{name}}(value:{{type}}){
+              this._{{name}}=value;
+              this.emitProperty(this,'{{name}}');
+          }
+  - trigger: "::re-fxasync"
+    vars:
+      - name: errorMessage
+        type: shell
+        params:
+          cmd: "~/Library/Preferences/espanso/scripts/Prompt.ps1 -text errorMessage"
+    replace: |
+      useEffect(()=>{
+          let m=true;
+          const work=async ()=>{
+              try{
+                  
+              }catch(ex){
+                  Log.error('{{errorMessage}}',ex);
+              }
+          }
+          work();
+          return ()=>{m=false};
+      },[]);
+

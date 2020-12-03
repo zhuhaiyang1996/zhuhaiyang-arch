@@ -1,0 +1,6 @@
+name: temp
+parent: default
+
+matches:
+  - trigger: ";ah"
+    replace: "[@ahrens2017, Loc. $|$]"
