@@ -31,4 +31,24 @@ imap <C-c> <Esc>:setlocal spell!<CR>i
 nmap <C-c> :setlocal spell!<CR>
 
 "格式化 markdown 文档
-nmap <leader>ac <Plug>(coc-codeaction) 
+nmap <leader>ac <Plug>(coc-codeaction)
+
+" ┌───────────────────────────────────────────────────────────────────────────┐
+" │                            FZF Mappings                                   │
+" └───────────────────────────────────────────────────────────────────────────┘
+"" FZF
+nmap <leader>f :Files<CR>
+nmap <leader>b :Buffers<CR>
+nmap <leader>c :Commands<CR>
+nmap <leader>t :BTags<CR>
+nmap <leader>/ :Rg<CR>
+nmap <leader>gc :Commits<CR>
+nmap <leader>gs :GFiles?<CR>
+nmap <leader>sh :History/<CR>
+
+" show mapping on all modes with F1
+nmap <F1> <plug>(fzf-maps-n)
+imap <F1> <plug>(fzf-maps-i)
+vmap <F1> <plug>(fzf-maps-x)
+
+nmap <leader>r :RnvimrToggle<CR>
