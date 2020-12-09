@@ -242,3 +242,13 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
+# ==================================
+function texclean() {
+	rm *.blg
+	rm *.dvi
+	rm *.aux
+	rm *.bbl
+	rm *.log
+	rm *.out
+	rm *.toc
+}
