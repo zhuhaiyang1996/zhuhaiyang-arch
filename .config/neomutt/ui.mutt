@@ -1,0 +1,152 @@
+# File:           ui.mutt
+# Description:     All the tui related options
+# Author:		    Reinaldo Molina
+# Email:          rmolin88 at gmail dot com
+# Revision:	    0.0.0
+# Created:        Tue Jan 22 2019 16:18
+# Last Modified:  Tue Jan 22 2019 16:18
+
+# Pretty cool colors
+# Just follow terminal colors
+# Taken from: https://www.reddit.com/r/archlinux/comments/aw0re9/using_pywal_with_neomutt/
+color normal white default
+color signature yellow default
+color status default default
+color tilde blue default
+color tree brightred default
+color header brightyellow default ^From:
+color header yellow default ^To:
+color header brightcyan default ^Date
+color header yellow default ^Cc:
+color header brightgreen default ^Subject:
+color header brightcyan default ^X-TRASH:
+color status brightgreen default
+color index         brightcyan         default        "~N~p!~F"                   # new messages to me
+color index         yellow         default        "~N"                        # new messages
+color index         brightcyan         default        "~U~p!~F"                   # unread messages to me
+color index         blue        default        "~R~p!~F"                   # messages to me
+color index         green         default        "~Q"                        # messages that have been replied to
+color index         brightyellow        default        "~F"                        # flagged messages
+color index         brightyellow        default        "~F~p"                      # flagged messages to me
+color index         brightyellow        default        "~N~F"                      # new flagged messages
+color index         brightyellow        default        "~N~F~p"                    # new flagged messages to me
+color index         brightyellow        default        "~U~F~p"                    # new flagged messages to me
+color index         brightred       default        "~D"                        # deleted messages
+
+set realname = "Reinaldo Molina"
+
+set copy=yes			# always save a copy of outgoing messages
+set move = no # Do not move read emails
+
+# Sort to show most recent first
+set sort = reverse-date-received
+
+# Option to Save contacts so that autocompletion is possible
+# set display_filter='~/.config/neomutt/mutt.save.contacts.sh'
+# Super ugly but keeps emails timestamp in current timezone
+# set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %a, %d %b %Y %H:%M:%S %z' -d '\\1'/e\""
+# Options to load aliasses file
+# set alias_file= ~/.config/neomutt/data/aliases.txt
+# set sort_alias= alias
+# set reverse_alias=yes
+# source $alias_file
+
+## Abook
+# Is mutually exclusive with the email settings above
+set query_command= "abook --datafile $XDG_DATA_HOME/neomutt/addressbook --mutt-query '%s'"
+macro index,pager  a "<pipe-message>abook --datafile $XDG_DATA_HOME/neomutt/addressbook --add-email-quiet<return>"
+
+# Fri Jan 25 2019 20:09 
+# nvim crashes when lunching `which-key-plugin` on scratchpad
+set editor='nvim'
+
+# From https://github.com/bubbl/bubb-confs/blob/master/mutt/.mutt/general
+# A lot of good configs in that link
+set edit_headers    = yes                # show headers when composing
+set fast_reply                           # skip to compose when replying
+
+# Always include previous message when replying
+set include = yes
+
+set menu_scroll
+
+# Only new and read msgs
+# You have to remove the N flag and then sync
+set mark_old=no
+
+# Setup to view html. Remember to install w3m
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+# bind attach <return>    view-mailcap
+set mailcap_path=~/.config/neomutt/mailcap
+
+# Side-bar
+#/usr/share/doc/mutt/samples/sample.muttrc-sidebar
+# Sat Jul 15 2017 20:06 Dont like the sidebar visible all the time
+set sidebar_visible=no
+
+# No annoying pop-ups
+set confirmappend=no
+set delete=yes
+set autoedit
+
+# Sat Nov 04 2017 12:54: Neomutt only feature
+# If an opttion does not work search the manual. It may appear in different
+# types of options. You just need to put it in th correct one.
+set beep_new
+set new_mail_command="notify-send 'New Email in %f' '%n new messages, %u unread.' && mpg123 ~/.config/dotfiles/notification_sounds/cool_notification0.mp3 2>/dev/null&"
+
+# Speed up folders switch
+set sleep_time = 0
+
+# Nice time formats
+set date_format="%m-%d-%y %T"
+# set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+# set index_format="%3C %Z %{%d.%m.%y %H:%M} %-30.30n (%3l) %s"
+# Obtained from here
+# https://neomutt.org/feature/cond-date
+set index_format='%4C %Z %<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]> %-15.15L (%?l?%4l&%4c?) %s'
+# Alternative. Give it a try
+# set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
+
+# Display the index above the pager view
+set pager_index_lines=10
+
+set send_charset="utf-8"
+set charset="utf-8"
+set assumed_charset="utf-8"
+
+# Stop at the end instead of displaying next mail:
+set pager_stop=yes
+
+# Show context lines when going to next page:
+set pager_context=3
+
+# Store message headers locally to speed things up.
+# If hcache is a folder, Mutt will create sub cache folders for each account which may speeds things up even more.
+set header_cache = "$XDG_DATA_HOME/neomutt"
+
+# Store messages locally to speed things up, like searching message bodies.
+# Can be the same folder as header_cache.
+# This will cost important disk usage according to your e-mail amount.
+set message_cachedir = "$XDG_DATA_HOME/neomutt"
+set certificate_file = "$XDG_DATA_HOME/neomutt/certificates"
+
+# Ask if the user wishes to abort sending if $abort_noattach_regex is found in the
+# body, but no attachments have been added
+# It can be set to:
+#    "yes"     : always abort
+#    "ask-yes" : ask whether to abort
+#    "no"      : send the mail
+set abort_noattach = ask-yes
+# Search for the following regular expression in the body of the email
+# English: attach, attached, attachment, attachments
+set abort_noattach_regex = "\\<attach(|ed|ments?)\\>"
+
+# Thu Jan 31 2019 07:36
+# Trying threads
+# Do not like it. When a new messages arrives that is part of a thread stays down there
+set sort=threads
+set sort_aux=reverse-threads
+
+# vim: ft=neomuttrc
