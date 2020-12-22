@@ -93,10 +93,3 @@ let g:enable_italic_font=1                   " allow italic
 autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
 
-" 重新打开文件时，回到最后的编辑位置。
-au BufReadPost \* if line("'\"") > 1 && line("'\"") <= line("\$") | exe "normal! g'\"" | endif
-
-" 保存文件时自动删除文件中多余的空格
-if has("autocmd")
-autocmd BufWritePre _.md,_.txt,_.js,_.py,_.wiki,_.sh,_.coffee,\*.vimrc :call CleanExtraSpaces()
-endif
