@@ -27,7 +27,7 @@ Plug 'tyru/open-browser.vim'                                        " Open URI w
 Plug 'junegunn/vim-easy-align'                                      " A simple, easy-to-use Vim alignment plugin
 Plug 'skywind3000/asyncrun.vim'                                     " 后台运行 shell 命令，并将结果实时显示到 Vim 的 Quickfix 窗口中
 Plug 'preservim/nerdcommenter'                                      " 快速注释插件
-Plug 'easymotion/vim-easymotion'                                    " 快速跳转
+"Plug 'easymotion/vim-easymotion'                                    " 快速跳转
 Plug 'majutsushi/tagbar'                                            " Tagbar: a class outline viewer for Vim
 Plug 'yianwillis/vimcdoc'                                           " Vim 中文文档
 Plug 'RRethy/vim-illuminate'                                        " automatically highlighting other uses of the current word under the cursor
@@ -47,4 +47,16 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'christoomey/vim-tmux-navigator'                               " seamless vim and tmux navigation
 Plug 'godlygeek/tabular'
 
+Plug 'lervag/vimtex'
+    let g:tex_flavor='latex'
+    let g:vimtex_view_method='zathura'
+    let g:vimtex_quickfix_mode=1
+    set conceallevel=1
+    let g:tex_conceal='abdmg'
+
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+    let g:instant_markdown_port = 10086
+    let g:instant_markdown_browser = "qutebrowser"
+    let g:instant_markdown_autostart = 0
+    let g:instant_markdown_autoscroll = 1
 call plug#end()
