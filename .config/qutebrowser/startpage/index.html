@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>~</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <script src="scripts/transitions.js"></script>
+  </head>
+
+  <body>
+    <svg id="fader"></svg>
+    <script>
+      fadeInPage();
+    </script>
+
+    <!-- Welcome screen -->
+    <div id="main_window">
+      <img id="leftImg" src="image.png" class="image" />
+      <div id="content">
+        <h1 class="title">Welcome</h1>
+        <div id="date">
+          <script type="text/javascript">
+            function doDate() {
+              var str = "";
+              var months = new Array(
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+              );
+              var clock = new Date();
+              var now = new Date();
+
+              str +=
+                months[clock.getMonth()] +
+                " " +
+                now.getDate() +
+                ", " +
+                clock.getFullYear() +
+                " | " +
+                ("0" + now.getHours()).slice(-2) +
+                ":" +
+                ("0" + now.getMinutes()).slice(-2) +
+                ":" +
+                ("0" + now.getSeconds()).slice(-2);
+              document.getElementById("date").innerHTML = str;
+            }
+            setInterval(doDate, 1000);
+            doDate();
+          </script>
+        </div>
+
+        <!-- Web search -->
+        <div id="web_search">
+          <form
+            action="https://duckduckgo.com/"
+            method="GET"
+            autocomplete="off"
+          >
+            <label for="q">></label>
+            <input
+              autofocus
+              id="q"
+              name="q"
+              type="search"
+              placeholder="search with duckduckgo..."
+            />
+          </form>
+        </div>
+
+        <!-- Links -->
+        <nav>
+          <div id="links_container">
+            <ul>
+              <a class="subtitle">Frequent</a>
+              <li>
+                <a href="https://wangchujiang.com/linux-command/">Linux</a>
+              </li>
+              <li><a href="https://github.com/">Github</a></li>
+              <li><a href="https://wiki.archlinux.org/">Arch</a></li>
+            </ul>
+            <ul>
+              <a class="subtitle">Media</a>
+              <li><a href="https://www.reddit.com/">Reddit</a></li>
+              <li><a href="https://twitter.com/home">Twitter</a></li>
+              <li><a href="https://www.youtube.com/">YouTube</a></li>
+            </ul>
+            <ul>
+              <a class="subtitle">News</a>
+              <li><a href="https://news.ycombinator.com/news">Hacker</a></li>
+              <li><a href="https://pythonspot.com/pyqt5/">Pyqt5</a></li>
+              <li><a href="https://twitter.com/home">Twitter</a></li>
+            </ul>
+            <ul>
+              <a class="subtitle">Studies</a>
+              <li>
+                <a href="https://www.deepl.com/translator">DeepL</a>
+              </li>
+              <li><a href="https://tldp.org/downloads/">Tldp</a></li>
+              <li><a href="https://www.gnu.org/">GNU</a></li>
+            </ul>
+            <ul>
+              <a class="subtitle">Others</a>
+              <li><a href="https://www.digitec.ch/">Digitec</a></li>
+              <li><a href="http://127.0.0.1:2017/">V2ray</a></li>
+              <li><a href="http://libgen.lc/">Libgen</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bottom">
+      <div class="contacts">
+        <p>
+          <a href="https://gitlab.com/wolfiy/wlfys-minimal-startpage"
+            >GitLab Repo</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <script src="scripts/darkmode.js"></script>
+  </body>
+</html>
+
