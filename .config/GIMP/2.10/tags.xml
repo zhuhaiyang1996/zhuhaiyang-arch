@@ -1303,6 +1303,9 @@
   <resource identifier="${gimp_data_dir}/palettes/Web.gpl" checksum="be9b5962481585cd5288a049cf8ccda5">
   </resource>
 
+  <resource identifier="all-the-icons" checksum="(null)">
+  </resource>
+
   <resource identifier="C059" checksum="(null)">
   </resource>
 
@@ -1426,6 +1429,12 @@
   <resource identifier="DejaVu Serif Semi-Condensed" checksum="(null)">
   </resource>
 
+  <resource identifier="file-icons" checksum="(null)">
+  </resource>
+
+  <resource identifier="FontAwesome" checksum="(null)">
+  </resource>
+
   <resource identifier="Font Awesome 5 Brands" checksum="(null)">
   </resource>
 
@@ -1433,6 +1442,9 @@
   </resource>
 
   <resource identifier="Font Awesome 5 Free Heavy" checksum="(null)">
+  </resource>
+
+  <resource identifier="github-octicons" checksum="(null)">
   </resource>
 
   <resource identifier="IBM Plex Mono" checksum="(null)">
@@ -1475,6 +1487,9 @@
   </resource>
 
   <resource identifier="Liberation Serif Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="Material Icons" checksum="(null)">
   </resource>
 
   <resource identifier="Monospace" checksum="(null)">
