@@ -1,39 +1,32 @@
-# ░▀▀█░█▀█░▀█▀░█░█░█░█░█▀▄░█▀█░█▀▄░█▀▀
-# ░▄▀░░█▀█░░█░░█▀█░█░█░█▀▄░█▀█░█▀▄░█░░
-# ░▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀░▀░▀░▀░▀░▀░▀▀▀
+# zathura configuration.
 
 set selection-clipboard clipboard
-set window-title-basename true
-set window-title-home-tilde true
-set page-padding 1
-set statusbar-v-padding 0
-set statusbar-h-padding 20
+
+# disable status bar
+set guioptions none
 
 #字体与字号
 set font "UbuntuMono Nerd Font Mono 12"
 
-##默认高度，像素
-set window-height 600
-
-#默认宽度
-set window-width 800
-
 #显示右侧进度条
 set show-v-scrollbar true
 
-set render-loading false
+# show PDF file base name and page numbers in window title
+set window-title-basename true
+set window-title-home-tilde true
+set window-title-page true
 
-#
-# Startup options
-#
 ##以宽度自适应打开
 set adjust-open "width"
-# Fix following links(!)
-set sandbox none
+
+#增强搜索，实时搜索
+set incremental-search true
 
 # Shortcuts
 map [normal]        u       scroll half-up
 map [fullscreen]    u       scroll half-up
+map [normal]        b       toggle_statusbar
+map [fullscreen]    b       toggle_statusbar
 map [normal]        d       scroll half-down
 map [fullscreen]    d       scroll half-down
 map [normal]        r       rotate
@@ -53,66 +46,36 @@ map [fullscreen]    p       print
 map [normal]        i       recolor
 map [fullscreen]    i       recolor
 
-# stop at page boundaries
-set scroll-page-aware true
-set scroll-full-overlap 0.01
-#set scroll-step 50
-
-#增强搜索，实时搜索
-set incremental-search true
-
-#GUI相关，留空可隐藏底部statusbar
-set guioptions ""
-map <M-s> toggle_statusbar
-
-#set recolor			true
-set recolor-keephue		true
-
-map <C-i> recolor
-
-# Dracula color theme for Zathura
-# Swaps Foreground for Background to get a light version if the user prefers
-
-# Base16 Gruvbox
-set notification-error-bg       "#282828" # bg
+# gruvbox dark colours; modified from https://github.com/rwrr/zathura-gruvbox
+set notification-error-bg       "#1d2021" # bg
 set notification-error-fg       "#fb4934" # bright:red
-set notification-warning-bg     "#282828" # bg
+set notification-warning-bg     "#1d2021" # bg
 set notification-warning-fg     "#fabd2f" # bright:yellow
-set notification-bg             "#282828" # bg
+set notification-bg             "#1d2021" # bg
 set notification-fg             "#b8bb26" # bright:green
-
 set completion-bg               "#504945" # bg2
 set completion-fg               "#ebdbb2" # fg
 set completion-group-bg         "#3c3836" # bg1
 set completion-group-fg         "#928374" # gray
 set completion-highlight-bg     "#83a598" # bright:blue
 set completion-highlight-fg     "#504945" # bg2
-
-# Define the color in index mode
 set index-bg                    "#504945" # bg2
 set index-fg                    "#ebdbb2" # fg
 set index-active-bg             "#83a598" # bright:blue
 set index-active-fg             "#504945" # bg2
-
-set inputbar-bg                 "#282828" # bg
+set inputbar-bg                 "#1d2021" # bg
 set inputbar-fg                 "#ebdbb2" # fg
-
-set statusbar-bg                "#504945" # bg2
+set statusbar-bg                "#1d2021" # bg # was: bg2
 set statusbar-fg                "#ebdbb2" # fg
-
 set highlight-color             "#fabd2f" # bright:yellow
 set highlight-active-color      "#fe8019" # bright:orange
-
-set default-bg                  "#282a36" # Background
-set default-fg                  "#f8f8f2" # Foreground
-
+set default-bg                  "#1d2021" # bg
+set default-fg                  "#ebdbb2" # fg
 set render-loading              true
-set render-loading-fg           "#282a36" # Background
-set render-loading-bg           "#f8f8f2" # Foreground
+set render-loading-bg           "#1d2021" # bg
+set render-loading-fg           "#ebdbb2" # fg
+set recolor-lightcolor          "#1d2021" # bg
+set recolor-darkcolor           "#ebdbb2" # fg
+# set recolor                     "false"   # was: true
 
-#
-# Recolor mode settings
-#
-
-set recolor-lightcolor          "#282a36" # Background
-set recolor-darkcolor           "#f8f8f2" # Foreground
+map <C-i> recolor
