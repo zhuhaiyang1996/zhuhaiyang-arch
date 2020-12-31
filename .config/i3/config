@@ -21,7 +21,7 @@ set $ws10 "10"
 
 # switch to workspace
 # 切换到工作区
-bindsym $mod+1 workspace number $ws1, exec --no-startup-id alacritty
+bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
@@ -80,17 +80,6 @@ bindsym $mod+Ctrl+a scratchpad show
 # 转换普通窗口为暂存窗口
 bindsym $mod+Ctrl+m move to scratchpad
 
-# => 电源管理（Pause Break键呼出)
-set $mode_system 系统:锁屏(L) 注销(O) 关机(S) 重启(R) 取消(Esc)
-bindsym Pause mode "$mode_system"
-mode "$mode_system" {
-    bindsym l exec "betterlockscreen -l blur u ~/Pictures/Wallpapers"
-    bindsym o exec i3-msg exit
-    bindsym s exec systemctl poweroff
-    bindsym r exec systemctl reboot
-    bindsym Escape mode "default"
-}
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -127,7 +116,7 @@ mode "Resize Mode" {
         bindsym Shift+minus gaps inner current minus 12
         bindsym Shift+plus gaps inner current plus 12
 
-        ## Resize // Exit Resize Mode // Escape or Enter ## 
+        ## Resize // Exit Resize Mode // Escape or Enter ##
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
@@ -140,70 +129,13 @@ bindsym $mod+r mode "Resize Mode"
 bindsym $mod+Shift+q kill
 
 ## Session // Reload i3 Config(重新加载i3配置) // <><Shift> c ##
-bindsym $mod+Shift+c reload
+#bindsym $mod+Shift+c reload
 
 ## Session // Restart i3 // <><Ctrl> r ##
 bindsym $mod+Ctrl+r restart
 
 # assign program to workspace
-assign [class="Alacritty"]          → $ws1
-assign [class="terminal"]           → $ws1
-assign [class="Sublime"]            → $ws2
-assign [class="Chromium"]           → $ws3
-assign [class="Firefox"]            → $ws3
-assign [class="File-roller"]        → $ws4
-assign [class="Pcmanfm"]            → $ws4
-assign [class="Evince"]             → $ws5
-assign [class="ghostwriter"]        → $ws5
-assign [class="libreoffice"]        → $ws5
-assign [class="Audacious"]          → $ws6
-assign [class="vlc"]                → $ws6
-assign [class="Gimp"]               → $ws7
-assign [class="Inkscape"]           → $ws7
-assign [class="Hexchat"]            → $ws8
-assign [class="Telegram"]           → $ws8
-assign [class="Upwork"]             → $ws8
-assign [class="Galculator"]         → $ws9
-assign [class="Gnome-font-viewer"]  → $ws9
-assign [class="Go-for-it"]          → $ws9
-assign [class="Gucharmap"]          → $ws9
-assign [class="KeePassXC"]          → $ws9
-assign [class="Transmission-gtk"]   → $ws9
-assign [class="Bleachbit"]          → $ws10
-
-###############################################################################
-
-## Modify // Settings // <> c ##
-bindsym $mod+c exec gnome-control-center
-
-## Modify // Wifi Settings // <> w ##
-bindsym $mod+w exec gnome-control-center wifi
-
-## Modify // Bluetooth Settings // <> b ##
-bindsym $mod+b exec gnome-control-center bluetooth
-
-## Launch // File Browser // <><Shift> n ##
-bindsym $mod+Shift+n exec nemo
-
-## Launch // Terminal // <Super> Enter ##
-bindsym $mod+Return exec alacritty
-
-# Launch // VSCode
-bindsym $mod+Shift+v exec code-insiders
-
-# Launch // typora
-bindsym $mod+Shift+m exec typora
-
-## Launch // Browser // <><Shift> Enter ##
-bindsym $mod+Shift+Return exec microsoft-edge-dev
-
-# start rofi  Launch // Application // <> Space ##
-bindsym $mod+space exec --no-startup-id zsh -c "rofi -show drun -theme oxide"
-
-bindsym $mod+Tab exec --no-startup-id rofi -show window -theme oxide
-
-
-###############################################################################
+# assign [class="Alacritty"]          → $ws1
 
 ## Modify // Containing Workspace // <><Ctrl><Shift> ↑ ↓ ← → ##
 bindsym $mod+Ctrl+Shift+Left move workspace to output left
@@ -236,15 +168,6 @@ bindsym $mod+Shift+Tab workspace prev
 ## Navigate // Previous Workspace // <><Alt> ← ##
 bindsym $mod+$alt+Left workspace prev
 
-
-# startup applications
-#设置壁纸
-exec_always --no-startup-id feh --bg-fill ~/.config/Dotfile/Wallpapers/05.jpg
-
-exec_always --no-startup-id xrandr --output Virtual-1 --mode "1366x768"  
-#启动picom(实现背景透明)
-exec_always --no-startup-id picom
-
 ###############################################################################
 # Meta Key Mappings
 # Alt key is Mod1, and Windows key is Mod4
@@ -259,43 +182,32 @@ set $alt Mod1
 # Toggle bar visibility
 #隱藏 bar
 ## Modify // Toggle Bar // <> i ##
-bindsym $mod+i bar mode toggle
+bindsym $mod+b bar mode toggle
 
 # Cause Settings app to float above tiled windows
-floating_maximum_size -1 x -1
+# xprop WM_CLASS
 for_window [class="Gnome-control-center"] floating enable
+#for_window [class="kitty"]
+
+#floating_maximum_size -1 x -1
 
 # window border settings
 # 桌面边框设置
 # => 窗口边框类型（边框类型有normal正常/none无边框/pixel 1 自定义宽度）
 # 默认普通窗口的边框类型
-new_window pixel     2
+
+default_border pixel 2
+default_floating_border normal
 
 # 取消工作区边缘的边框
-hide_edge_borders both
+# Hide borders
+hide_edge_borders none
 
 # 在三种边框类型中切换
 # shortcut to change window border
 bindsym $mod+n border normal    0
 bindsym $mod+y border pixel     1
 bindsym $mod+u border none
-
-
-# betterlockscreen
-bindsym $mod+Shift+p exec betterlockscreen -l blur u ~/Pictures/Wallpapers
-exec_always --no-startup-id betterlockscreen -w dim u ~/Pictures/Wallpapers
-
-# run polybar 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-# i3-gaps
-# i3-gaps 间隙设置
-smart_gaps on
-gaps inner 4
-gaps outer 2
-
-
-bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -f "pango:UbuntuMono Nerd Font Mono 10" -m "Do you really want to exit?" -B "    Exit " "i3-msg exit" -B "    Lock " "betterlockscreen -l blur && pkill i3-nagbar" -B "    Reboot " "pkill i3-nagbar && reboot" -B "    Shutdown " "pkill i3-nagbar && shutdown -h now"
 
 # 窗口颜色                边框    背景    文字    提示
 client.focused          #333333 #333333 #FFFFFF #333333
@@ -304,11 +216,6 @@ client.unfocused        #999999 #999999 #FFFFFF #3399FF
 client.urgent           #990000 #990000 #FFFFFF #990000
 client.placeholder      #000000 #000000 #FFFFFF #000000
 client.background       #FFFFFF
-
-#Attach to a running tmux session or create a new one. Since this script starts a new #terminal it can also been used with a keybinding from your favorite window-manager.
-#bindsym $mod+p exec --no-startup-id ~/.config/rofi/scripts/tmux_session.sh
-
-bindsym $mod+p exec --no-startup-id ~/.config/rofi/scripts/finder.sh
 
 #音量调节 pip install pulsemixer
 bindsym $mod+plus		    exec --no-startup-id pulsemixer --change-volume +5 && pkill -RTMIN+10 i3blocks
@@ -327,13 +234,109 @@ bindsym $mod+Shift+bracketleft 	exec --no-startup-id mpc seek -120
 bindsym $mod+bracketright 	    exec --no-startup-id mpc seek +10
 bindsym $mod+Shift+bracketright exec --no-startup-id mpc seek +120
 
-# For screenshots and recording
-#截图
-bindsym Print 			    exec flameshot gui
 
-# Show selection:
-bindsym $mod+Insert		exec --no-startup-id notify-send "📋 Clipboard contents:" "$(xclip -o -selection clipboard)"
+# OCR 识别文字
+bindsym $mod+Shift+o 			    exec textshot chi_sim
 
 #STOP/HIDE EVERYTHING:
 bindsym $mod+Shift+Delete	exec --no-startup-id pulsemixer --mute ; exec --no-startup-id mpc pause && pkill -RTMIN+10 i3blocks ; exec --no-startup-id pauseallmpv; workspace 0; exec $term -e htop ; exec $term -e lf
 
+
+
+bindsym $mod+shift+x exec betterlockscreen -l u ~/.config/Dotfile/Wallpapers
+
+
+new_float normal
+
+
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                    settings for i3-gaps                                   │
+# └───────────────────────────────────────────────────────────────────────────┘
+# i3-gaps
+# i3-gaps 间隙设置
+smart_borders on
+smart_gaps on
+gaps inner 4
+gaps outer 2
+
+# Press $mod+Shift+g to enter the gap mode.
+# Choose o or i for modifying outer/inner gaps.
+# Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace).
+# If you also press Shift with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+    bindsym o      mode "$mode_gaps_outer"
+    bindsym i      mode "$mode_gaps_inner"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym q mode "default"
+}
+mode "$mode_gaps_inner" {
+    bindsym plus  gaps inner current plus 5
+    bindsym minus gaps inner current minus 5
+    bindsym 0     gaps inner current set 0
+
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     gaps inner all set 0
+
+    bindsym o      mode "$mode_gaps_outer"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym q mode "default"
+}
+mode "$mode_gaps_outer" {
+    bindsym plus  gaps outer current plus 5
+    bindsym minus gaps outer current minus 5
+    bindsym 0     gaps outer current set 0
+
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     gaps outer all set 0
+
+    bindsym i      mode "$mode_gaps_inner"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym q mode "default"
+}
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                    startup applications                                   │
+# └───────────────────────────────────────────────────────────────────────────┘
+exec_always --no-startup-id feh --bg-fill ~/.config/Dotfile/Wallpapers/gruvbox.png
+#启动picom(实现背景透明)
+#exec_always --no-startup-id picom
+# run polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# set desktop background with custom effect
+exec --no-startup-id betterlockscreen -w dim u ~/.config/Dotfile/Wallpapers
+# Alternative (set last used background)
+exec --no-startup-id source ~/.fehbg
+exec --no-startup-id xfce4-power-manager &
+
+# audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# screen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+
+bindsym $mod+shift+r exec kitty --title=newsboat -e env LANG=en_US.UTF-8 newsboat
+bindsym $mod+Ctrl+o  exec kitty --title=neomutt -e env LANG=en_US.UTF-8 neomutt -F ~/.config/neomutt/user.ufl
+bindsym $mod+Ctrl+n  exec alacritty --title=neofetch
+bindsym $mod+Ctrl+h  exec kitty --title=top top
+
+for_window [title="newsboat"] floating enable,resize set 750 500,move position center
+for_window [title="neomutt"] floating enable border pixel 1
+for_window [title="neofetch"] floating enable,resize set 750 500,move position center
+for_window [class="TelegramDesktop"]resize set 400 1000,move position 20 40
+for_window [title="top"]floating enable,resize set 500 350,move position 20 40
+
+exec_always --no-startup-id sxhkd &
