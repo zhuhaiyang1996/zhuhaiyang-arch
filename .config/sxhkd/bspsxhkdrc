@@ -1,0 +1,95 @@
+super + shift + p
+    bash ~/.config/rofi/scripts/launch.sh powermenu
+
+alt + m
+    bash ~/.config/rofi/scripts/rofi.sh -e
+
+super + c
+    bash ~/.config/rofi/scripts/rofi.sh -c
+
+super + shift + c
+    copyq toggle
+
+super + Insert
+    notify-send "📋 Clipboard contents:" "$(xclip -o -selection clipboard)"
+
+alt + p
+    flameshot gui -p /home/zhuhaiyang/Documents/Pictures
+
+alt + n
+    nemo
+
+alt + c
+    code
+
+alt + t
+    typora
+
+alt + b
+    qutebrowser
+
+alt + shift + t
+    ~/.config/rofi/scripts/tmux_session.sh
+
+super + plus
+    /home/zhuhaiyang/.config/rofi/android/volume.sh
+
+super + Return
+    alacritty
+
+super + space
+    rofi -show drun -theme oxide
+
+alt + Tab
+    rofi -show window -theme awel
+
+super + shift + o
+    /home/zhuhaiyang/.local/bin/ocr.sh
+
+# quit/restart bspwm
+super + ctrl + {q,r}
+	bspc {quit,wm -r}
+
+super + shift + q
+	bspc node -{c}
+
+# volume up
+super + {equal,plus}
+    pulsemixer --change-volume {+5,+15}
+# volume down
+super + {_,shift + } minus
+	pulsemixer --change-volume {-5,-15}
+
+super + 1
+	bspc desktop -f 1
+super + 2
+	bspc desktop -f 2
+super + 3
+	bspc desktop -f 3
+super + 4
+	bspc desktop -f 4
+super + 5
+	bspc desktop -f 5
+super + 6
+	bspc desktop -f 6
+super + 7
+	bspc desktop -f 7
+super + 8
+	bspc desktop -f 8
+super + 9
+	bspc desktop -f 9
+super + 0
+	bspc desktop -f 10
+
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# window state - default is tiled
+super + alt + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+super + {r,p}
+	$TERMINAL -e {ranger,pulsemixer}
