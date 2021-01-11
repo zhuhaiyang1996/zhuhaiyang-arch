@@ -40,4 +40,45 @@ super + Return
 super + space
     rofi -show drun -theme oxide
 
+alt + Tab
+    rofi -show window -theme awel
+
+super + shift + o
+    /home/zhuhaiyang/.local/bin/ocr.sh
+
+# quit/restart bspwm
+super + ctrl + {q,r}
+	bspc {quit,wm -r}
+
+# volume up
+super + {equal,plus}
+    pulsemixer --change-volume {+5,+15}
+# volume down
+super + {_,shift + } minus
+	pulsemixer --change-volume {-5,-15}
+
+# Multimedia keys
+XF86AudioRaiseVolume
+	amixer -q set Master 5%+ unmute
+
+XF86AudioLowerVolume
+	amixer -q set Master 5%- unmute
+
+XF86AudioMute
+    amixer set Master toggle
+
+#音乐mpd，mpc
+super + less
+    mpc prev
+
+super + greater
+    mpc next
+# For advancing forward/backward in an mpd song
+#bindsym $mod+bracketleft 	    exec --no-startup-id mpc seek -10
+#bindsym $mod+Shift+bracketleft 	exec --no-startup-id mpc seek -120
+#bindsym $mod+bracketright 	    exec --no-startup-id mpc seek +10
+#bindsym $mod+Shift+bracketright exec --no-startup-id mpc seek +120
+#
+#bindsym $mod+shift+x exec betterlockscreen -l u ~/.config/Dotfile/Wallpapers
+
 
