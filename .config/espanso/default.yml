@@ -192,3 +192,6 @@ matches:
 
   - trigger: ":cry"
     replace: "LdMY2zzrm2eyXU"
+
+  - trigger: "beauty"
+    replace: "<img src=\"/home/zhuhaiyang/StudyNote/Images/e.jpg\" width=\"150\" align=right hspace=\"5\" vspace=\"5\"/>"
