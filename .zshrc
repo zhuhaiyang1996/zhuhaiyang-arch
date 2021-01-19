@@ -42,8 +42,8 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit ice wait lucid
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
-#zinit ice wait lucid
-#zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+zinit ice wait lucid
+zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
 
 zinit ice wait lucid
 zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
@@ -67,6 +67,14 @@ zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 zinit ice depth=1 wait lucid
 zinit light Aloxaf/fzf-tab
 
+# z
+zinit ice wait blockf lucid
+zinit light rupa/z
+
+# z tab completion
+# zinit ice wait lucid
+# zinit light changyuheng/fz
+
 zinit ice depth=1 wait blockf lucid atpull"zinit creinstall -q ."
 zinit light clarketm/zsh-completions
 
@@ -85,8 +93,8 @@ zinit light wfxr/forgit
 zinit ice depth=1 wait"2" lucid
 zinit light hlissner/zsh-autopair
 
-zinit ice depth=1 wait"2" lucid
-zinit light MichaelAquilina/zsh-you-should-use
+#zinit ice depth=1 wait"2" lucid
+#zinit light MichaelAquilina/zsh-you-should-use
 
 
 # Oh-my-zsh libs
@@ -102,6 +110,23 @@ zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::lib/theme-and-appearance.zsh
+
+set -o vi
+bindkey '^A' vi-beginning-of-line
+bindkey -M viins '^A' vi-beginning-of-line
+bindkey -M vicmd '^A' vi-beginning-of-line
+bindkey '^E' vi-end-of-line
+bindkey -M viins '^E' vi-end-of-line
+bindkey -M vicmd '^E' vi-end-of-line
+bindkey '^[F' vi-forward-word
+bindkey -M viins '^[F' vi-forward-word
+bindkey -M vicmd '^[F' vi-forward-word
+bindkey '^B' vi-backward-word
+bindkey -M viins '^B' vi-backward-word
+bindkey -M vicmd '^B' vi-backward-word
+bindkey '^W' vi-backward-kill-word
+bindkey -M viins '^W' vi-backward-kill-word
+bindkey -M vicmd '^W' vi-backward-kill-word
 
 ### End of Zinit's installer chunk
 
@@ -145,10 +170,8 @@ n ()
 
 export ANACONDA_HOME=$HOME/anaconda3/bin
 export TexLive_HOME=/usr/local/texlive/2020/bin/x86_64-linux
-PATH=$ANACONDA_HOME:$TexLive_HOME:$HOME/.cargo/bin:/bin:/usr/bin:/usr/local/bin:~/.local/bin:/usr/local/go/bin:~/go/bin:${PATH}
+PATH=$ANACONDA_HOME:$TexLive_HOME:$HOME/bin:$HOME/.dotnet/tools:${PATH}
 export PATH
-
-eval "$(zoxide init zsh)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -165,6 +188,15 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export FZF_DEFAULT_COMMAND='fd -H -L -E ".git" -E "node_modules" -E "anaconda3" -E ".tldr" -E "nvim-plug" -E "ting_en" -E "Microsoft"'
+export FZF_DEFAULT_COMMAND='fd -H -L --ignore-file /home/zhuhaiyang/.gitignore'
 export FZF_DEFAULT_OPTS="--height 90% --layout=reverse --bind=alt-j:down,alt-k:up,alt-i:toggle+down --border --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+
+export EDITOR="nvim"
+export DISPLAY=:0.0
+# Set prefereed programs
+export BROWSER="qutebrowser"
+export VISUAL="nvim"
+export PAGER="less"
+export TERMINAL="alacritty"
+export OPENER="xdg-open"
