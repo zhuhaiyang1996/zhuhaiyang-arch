@@ -93,8 +93,8 @@ zinit light wfxr/forgit
 zinit ice depth=1 wait"2" lucid
 zinit light hlissner/zsh-autopair
 
-#zinit ice depth=1 wait"2" lucid
-#zinit light MichaelAquilina/zsh-you-should-use
+zinit ice depth=1 wait"2" lucid
+zinit light MichaelAquilina/zsh-you-should-use
 
 
 # Oh-my-zsh libs
@@ -135,38 +135,6 @@ bindkey -M vicmd '^W' vi-backward-kill-word
 
 source ~/.config/Dotfile/zsh/.aliases
 source ~/.config/Dotfile/zsh/.functions
-
-# nnn config file
-export NNN_COLORS='2641'
-export NNN_OPTS="Eeao"
-export NNN_PLUG='u:getplugs;p:preview-tui;i:imgthumb;d:dragdrop;m:nmount;s:suedit'
-
-export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
-
-[ -f ~/.config/zsh/nnn-bookmarks.zsh ] && source ~/.config/zsh//nnn-bookmarks.zsh
-
-
-n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    # NOTE: NNN_TMPFILE is fixed, should not be modified
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
 
 export ANACONDA_HOME=$HOME/anaconda3/bin
 export TexLive_HOME=/usr/local/texlive/2020/bin/x86_64-linux
