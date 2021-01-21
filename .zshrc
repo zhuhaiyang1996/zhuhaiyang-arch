@@ -1,7 +1,6 @@
-# History in cache directory:
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.config/Dotfile/zsh/.zsh_history
+HISTSIZE=10000 # 历史纪录条目数量
+SAVEHIST=10000 # 注销后保存的历史纪录条目数量
+HISTFILE=~/.config/Dotfile/zsh/.zsh_history # 历史纪录文件
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -38,9 +37,6 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # Oh-my-zsh plugins
 zinit ice wait lucid atload"unalias grv"
 zinit snippet OMZ::plugins/git/git.plugin.zsh
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 zinit ice wait lucid
 zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
@@ -90,8 +86,8 @@ zinit light zdharma/history-search-multi-word
 zinit ice depth=1 wait"2" lucid
 zinit light wfxr/forgit
 
-zinit ice depth=1 wait"2" lucid
-zinit light hlissner/zsh-autopair
+#zinit ice depth=1 wait"2" lucid
+#zinit light hlissner/zsh-autopair
 
 zinit ice depth=1 wait"2" lucid
 zinit light MichaelAquilina/zsh-you-should-use
@@ -168,3 +164,16 @@ export VISUAL="nvim"
 export PAGER="less"
 export TERMINAL="alacritty"
 export OPENER="xdg-open"
+
+# man 颜色
+export LESS_TERMCAP_mb=$'\E[01;31m'
+# 标题和命令主体
+export LESS_TERMCAP_md=$'\E[01;32m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+# 命令参数
+export LESS_TERMCAP_us=$'\E[04;36;4m'
+
+WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
