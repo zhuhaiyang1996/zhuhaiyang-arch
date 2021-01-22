@@ -39,9 +39,6 @@ zinit ice wait lucid atload"unalias grv"
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 zinit ice wait lucid
-zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
-
-zinit ice wait lucid
 zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
 
 zinit ice wait lucid
@@ -67,10 +64,6 @@ zinit light Aloxaf/fzf-tab
 zinit ice wait blockf lucid
 zinit light rupa/z
 
-# z tab completion
-# zinit ice wait lucid
-# zinit light changyuheng/fz
-
 zinit ice depth=1 wait blockf lucid atpull"zinit creinstall -q ."
 zinit light clarketm/zsh-completions
 
@@ -86,8 +79,8 @@ zinit light zdharma/history-search-multi-word
 zinit ice depth=1 wait"2" lucid
 zinit light wfxr/forgit
 
-#zinit ice depth=1 wait"2" lucid
-#zinit light hlissner/zsh-autopair
+zinit ice depth=1 wait"2" lucid
+zinit light hlissner/zsh-autopair
 
 zinit ice depth=1 wait"2" lucid
 zinit light MichaelAquilina/zsh-you-should-use
@@ -176,4 +169,3 @@ export LESS_TERMCAP_ue=$'\E[0m'
 # 命令参数
 export LESS_TERMCAP_us=$'\E[04;36;4m'
 
-WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
