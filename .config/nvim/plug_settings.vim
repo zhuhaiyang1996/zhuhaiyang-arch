@@ -6,6 +6,7 @@ let g:omni_sql_no_default_maps = 1                      " disable sql omni compl
 let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
+let g:python3_host_skip_check=1
 let g:python3_host_prog = expand('/usr/bin/python3')
 
 " ┌───────────────────────────────────────────────────────────────────────────┐
@@ -46,21 +47,21 @@ function! s:defx_mappings() abort
 endfunction
 
 call defx#custom#option('_', {
-	\ 'winwidth': 25,
+  \ 'root_marker': '[IN]',
+	\ 'winwidth': 35,
 	\ 'split': 'vertical',
 	\ 'direction': 'topleft',
 	\ 'listed': 1,
 	\ 'show_ignored_files': 0,
-	\ 'root_marker': '≡ ',
+  \ 'columns': 'git:mark:indent:icons:filename:type',
+  \ 'buffer_name': 'defxplorer',
+  \ 'toggle': 1,
+  \ 'resume': 1,
 	\ 'ignored_files':
 	\     '.mypy_cache,.pytest_cache,.git,.hg,.svn,.stversions'
 	\   . ',__pycache__,.sass-cache,*.egg-info,.DS_Store,*.pyc,*.swp'
 	\ })
-call defx#custom#column('icon', {
-      \ 'directory_icon': '▸',
-      \ 'opened_icon': '▾',
-      \ 'root_icon': ' ',
-      \ })
+
 call defx#custom#column('filename', {
       \ 'min_width': 40,
       \ 'max_width': 40,
@@ -68,19 +69,6 @@ call defx#custom#column('filename', {
 call defx#custom#column('mark', {
       \ 'readonly_icon': '✗',
       \ 'selected_icon': '✓',
-      \ })
-
-" root marker官方文档叫root-marker, 而实际用的却是root_marker，醉了
-call defx#custom#option('_', {
-      \ 'root_marker': '[IN]',
-      \ 'winwidth': 35,
-      \ 'columns': 'git:mark:indent:icons:filename:type',
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 0,
-      \ 'buffer_name': 'defxplorer',
-      \ 'toggle': 1,
-      \ 'resume': 1
       \ })
 autocmd FileType defx call s:defx_mappings()
 
@@ -114,8 +102,7 @@ let g:indentLine_fileTypeExclude = ['startify']
 " ┌───────────────────────────────────────────────────────────────────────────┐
 " │                            vim-markdown                                   │
 " └───────────────────────────────────────────────────────────────────────────┘
-let g:vim_markdown_conceal_code_blocks = 0 "显示代码框
-let g:vim_markdown_folding_disabled = 1
+
 
 " ┌───────────────────────────────────────────────────────────────────────────┐
 " │                            i3config                                       │
@@ -163,7 +150,10 @@ let g:airline_section_warning = ''
 let g:airline_section_x=''
 let g:airline_section_z = airline#section#create(['%3p%% ', 'linenr', ':%c'])
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+
+" 顶部配置
 let g:airline#extensions#tabline#enabled = 1
+
 let g:airline#extensions#tabline#buffer_min_count = 2   " show tabline only if there is more than 1 buffer
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
 let airline#extensions#coc#error_symbol = '✘:'
@@ -253,24 +243,25 @@ au BufWritePre * :%s/\s\+$//e                           " remove trailing whites
 au CursorHold * silent call CocActionAsync('highlight') " highlight match on cursor hold
 
 " enable spell only if file type is normal text
-let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid', 'rst']
-autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
+" let spellable = ['markdown', 'gitcommit', 'txt', 'text', 'liquid', 'rst']
+" autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell | endif
 
 
 " coc completion popup
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " startify if no passed argument or all buffers are closed
-augroup noargs
-    " startify when there is no open buffer left
-    autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
+"该断代码与 vim-floaterm 冲突
+" augroup noargs
+"     " startify when there is no open buffer left
+"     autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
 
-    " open startify on start if no argument was passed
-    autocmd VimEnter * if argc() == 0 | Startify | endif
-augroup END
+"     " open startify on start if no argument was passed
+"     autocmd VimEnter * if argc() == 0 | Startify | endif
+" augroup END
 
 
-
+" 重新打开文件时，回到最后的编辑位置。
 " Return to last edit position when opening files
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -281,10 +272,10 @@ autocmd BufReadPost *
 autocmd FileType python nnoremap <leader>rn :Semshi rename <CR>
 
 " format with available file format formatter
-command! -nargs=0 Format :call CocAction('format')
+" command! -nargs=0 Format :call CocAction('format')
 
 " organize imports
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+" command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 
 
@@ -399,6 +390,70 @@ nmap <Leader>r <Plug>(quickrun)
 map <F10> :QuickRun<CR>
 
 " ┌───────────────────────────────────────────────────────────────────────────┐
-" │                             easymotion                                    │
+" │                                    vim-floaterm                           │
 " └───────────────────────────────────────────────────────────────────────────┘
-nmap ss <Plug>(easymotion-s2)
+nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+autocmd FileType floaterm tnoremap <buffer> <Esc> q
+nmap <leader>r :FloatermNew ranger<CR>
+nmap <leader>g :FloatermNew lazygit<CR>
+" tmux
+
+if executable('tmux') && filereadable(expand('~/.zshrc')) && $TMUX !=# ''
+    let g:vimIsInTmux = 1
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+else
+    let g:vimIsInTmux = 0
+endif
+
+if g:vimIsInTmux == 1
+    let g:tmuxline_preset = {
+                \'a'    : '#S',
+                \'b'    : '%R',
+                \'c'    : [ '#{sysstat_mem} #[fg=blue]\ufa51#{upload_speed}' ],
+                \'win'  : [ '#I', '#W' ],
+                \'cwin' : [ '#I', '#W', '#F' ],
+                \'x'    : [ "#[fg=blue]#{download_speed} \uf6d9 #{sysstat_cpu}" ],
+                \'y'    : [ '%a' ],
+                \'z'    : '#H #{prefix_highlight}'
+                \}
+    let g:tmuxline_separators = {
+                \ 'left' : "\ue0bc",
+                \ 'left_alt': "\ue0bd",
+                \ 'right' : "\ue0ba",
+                \ 'right_alt' : "\ue0bd",
+                \ 'space' : ' '}
+endif
+
+"--------------------------------------
+"asyncrun
+"--------------------------------------
+" 自动打开 quickfix window ，高度为 6
+let g:asyncrun_open = 6
+
+" 任务结束时候响铃提醒
+let g:asyncrun_bell = 1
+
+" 设置 F10 打开/关闭 Quickfix 窗口
+nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+
+" F9 编译(单个文件)
+au BufNewFile,BufRead *.c  nnoremap <silent> <F9> :w<cr>:AsyncRun g++  "$(VIM_FILEPATH)" -o a <cr>
+au BufNewFile,BufRead *.cpp  nnoremap <silent> <F9> :w<cr>:AsyncRun g++  "$(VIM_FILEPATH)" -o a <cr>
+au BufNewFile,BufRead *.java  nnoremap <silent> <F9> :w<cr>:AsyncRun javac  "$(VIM_FILEPATH)"<cr>
+
+" F5 运行(单个文件)
+""nnoremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+au BufNewFile,BufRead *.c  nnoremap <silent> <F5> :!./a<cr>
+au BufNewFile,BufRead *.cpp  nnoremap <silent> <F5> :!./a<cr>
+au BufNewFile,BufRead *.py  nnoremap <silent> <F5> :! ./%<cr>
+au BufNewFile,BufRead *.sh  nnoremap <silent> <F5> :! ./%<cr>
+au BufNewFile,BufRead *.java  nnoremap <silent> <F5> :! java %:r<cr>
+
+
+"--------------------------------------
+" tagbar
+"--------------------------------------
+" 需要安装 ctags
+nmap <F8> :TagbarToggle<CR>
