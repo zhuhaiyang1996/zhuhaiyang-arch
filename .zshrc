@@ -9,17 +9,26 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# ZINIT[HOME_READY]=1
+declare -A ZINIT
+ZINIT[HOME_DIR]=~/.config/Dotfile/zsh/.zinit
+ZINIT[BIN_DIR]=~/.config/Dotfile/zsh/.zinit/bin
+ZINIT[PLUGINS_DIR]=~/.config/Dotfile/zsh/.zinit/plugins
+ZINIT[COMPLETIONS_DIR]=~/.config/Dotfile/zsh/.zinit/completions
+ZINIT[SNIPPETS_DIR]=~/.config/Dotfile/zsh/.zinit/snippets
+ZINIT[COMPINIT_OPTS]=~/.config/Dotfile/zsh/.zinit
+ZINIT[ZCOMPDUMP_PATH]=~/.config/Dotfile/zsh/.zinit/zcompdump-${ZSH_VERSION}
 
 ### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+if [[ ! -f $HOME/.config/Dotfile/zsh/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command mkdir -p "$HOME/.config/Dotfile/zsh/.zinit" && command chmod g-rwX "$HOME/.config/Dotfile/zsh/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.config/Dotfile/zsh/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
+source "$HOME/.config/Dotfile/zsh/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -125,9 +134,12 @@ bindkey -M vicmd '^W' vi-backward-kill-word
 source ~/.config/Dotfile/zsh/.aliases
 source ~/.config/Dotfile/zsh/.functions
 
+export QT_STYLE_OVERRIDE=breeze
+export QT_QPA_PLATFORMTHEME="qt5ct"
 export ANACONDA_HOME=$HOME/anaconda3/bin
+export Panbook=/home/zhuhaiyang/.local/bin/PanBook
 export TexLive_HOME=/usr/local/texlive/2020/bin/x86_64-linux
-PATH=$ANACONDA_HOME:$TexLive_HOME:$HOME/bin:$HOME/.dotnet/tools:${PATH}
+PATH=$ANACONDA_HOME:$TexLive_HOME:$Panbook:$HOME/.local/bin:$HOME/.dotnet/tools:${PATH}
 export PATH
 
 # >>> conda initialize >>>
@@ -150,12 +162,11 @@ export FZF_DEFAULT_OPTS="--height 90% --layout=reverse --bind=alt-j:down,alt-k:u
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 export EDITOR="nvim"
-export DISPLAY=:0.0
+#export DISPLAY=:0.0
 # Set prefereed programs
 export BROWSER="qutebrowser"
 export VISUAL="nvim"
 export PAGER="less"
-export TERMINAL="alacritty"
 export OPENER="xdg-open"
 
 # man 颜色
@@ -169,3 +180,5 @@ export LESS_TERMCAP_ue=$'\E[0m'
 # 命令参数
 export LESS_TERMCAP_us=$'\E[04;36;4m'
 
+
+source /home/zhuhaiyang/.config/broot/launcher/bash/br
