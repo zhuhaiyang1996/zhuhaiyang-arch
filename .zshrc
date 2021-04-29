@@ -2,18 +2,11 @@ HISTSIZE=10000 # 历史纪录条目数量
 SAVEHIST=10000 # 注销后保存的历史纪录条目数量
 HISTFILE=~/.config/Dotfile/zsh/.zsh_history # 历史纪录文件
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # ZINIT[HOME_READY]=1
 declare -A ZINIT
 ZINIT[HOME_DIR]=~/.config/Dotfile/zsh/.zinit
 ZINIT[BIN_DIR]=~/.config/Dotfile/zsh/.zinit/bin
-ZINIT[PLUGINS_DIR]=~/.config/Dotfile/zsh/.zinit/plugins
+ZINIT[PLUGINS_DIR]=~/.config/Dotfile/zsh/.zinit/pluginsq
 ZINIT[COMPLETIONS_DIR]=~/.config/Dotfile/zsh/.zinit/completions
 ZINIT[SNIPPETS_DIR]=~/.config/Dotfile/zsh/.zinit/snippets
 ZINIT[COMPINIT_OPTS]=~/.config/Dotfile/zsh/.zinit
@@ -128,20 +121,6 @@ bindkey -M vicmd '^W' vi-backward-kill-word
 
 ### End of Zinit's installer chunk
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.config/Dotfile/zsh/.p10k.zsh ]] || source ~/.config/Dotfile/zsh/.p10k.zsh
-
-source ~/.config/Dotfile/zsh/.aliases
-source ~/.config/Dotfile/zsh/.functions
-
-export QT_STYLE_OVERRIDE=breeze
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export ANACONDA_HOME=$HOME/anaconda3/bin
-export Panbook=/home/zhuhaiyang/.local/bin/PanBook
-export TexLive_HOME=/usr/local/texlive/2020/bin/x86_64-linux
-PATH=$ANACONDA_HOME:$TexLive_HOME:$Panbook:$HOME/.local/bin:$HOME/.dotnet/tools:${PATH}
-export PATH
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/zhuhaiyang/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -156,29 +135,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-export FZF_DEFAULT_COMMAND='fd -H -L --ignore-file /home/zhuhaiyang/.gitignore'
-export FZF_DEFAULT_OPTS="--height 90% --layout=reverse --bind=alt-j:down,alt-k:up,alt-i:toggle+down --border --preview 'bat --style=numbers --color=always --line-range :500 {}'"
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-
-export EDITOR="nvim"
-#export DISPLAY=:0.0
-# Set prefereed programs
-export BROWSER="qutebrowser"
-export VISUAL="nvim"
-export PAGER="less"
-export OPENER="xdg-open"
-
-# man 颜色
-export LESS_TERMCAP_mb=$'\E[01;31m'
-# 标题和命令主体
-export LESS_TERMCAP_md=$'\E[01;32m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-# 命令参数
-export LESS_TERMCAP_us=$'\E[04;36;4m'
-
-
-source /home/zhuhaiyang/.config/broot/launcher/bash/br
