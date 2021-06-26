@@ -1,3 +1,4 @@
+set nonomatch # 支持使用通配符
 HISTSIZE=10000 # 历史纪录条目数量
 SAVEHIST=10000 # 注销后保存的历史纪录条目数量
 HISTFILE=~/.config/Dotfile/zsh/.zsh_history # 历史纪录文件
@@ -62,6 +63,8 @@ zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 zinit ice depth=1 wait lucid
 zinit light Aloxaf/fzf-tab
 
+zinit ice depth=1 wait lucid
+zinit light urbainvaes/fzf-marks
 # z
 zinit ice wait blockf lucid
 zinit light rupa/z
@@ -102,22 +105,22 @@ zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::lib/theme-and-appearance.zsh
 
-set -o vi
-bindkey '^A' vi-beginning-of-line
-bindkey -M viins '^A' vi-beginning-of-line
-bindkey -M vicmd '^A' vi-beginning-of-line
-bindkey '^E' vi-end-of-line
-bindkey -M viins '^E' vi-end-of-line
-bindkey -M vicmd '^E' vi-end-of-line
-bindkey '^[F' vi-forward-word
-bindkey -M viins '^[F' vi-forward-word
-bindkey -M vicmd '^[F' vi-forward-word
-bindkey '^B' vi-backward-word
-bindkey -M viins '^B' vi-backward-word
-bindkey -M vicmd '^B' vi-backward-word
-bindkey '^W' vi-backward-kill-word
-bindkey -M viins '^W' vi-backward-kill-word
-bindkey -M vicmd '^W' vi-backward-kill-word
+#set -o vi
+#bindkey '^A' vi-beginning-of-line
+#bindkey -M viins '^A' vi-beginning-of-line
+#bindkey -M vicmd '^A' vi-beginning-of-line
+#bindkey '^E' vi-end-of-line
+#bindkey -M viins '^E' vi-end-of-line
+#bindkey -M vicmd '^E' vi-end-of-line
+#bindkey '^[F' vi-forward-word
+#bindkey -M viins '^[F' vi-forward-word
+#bindkey -M vicmd '^[F' vi-forward-word
+#bindkey '^B' vi-backward-word
+#bindkey -M viins '^B' vi-backward-word
+#bindkey -M vicmd '^B' vi-backward-word
+#bindkey '^W' vi-backward-kill-word
+#bindkey -M viins '^W' vi-backward-kill-word
+#bindkey -M vicmd '^W' vi-backward-kill-word
 
 ### End of Zinit's installer chunk
 
