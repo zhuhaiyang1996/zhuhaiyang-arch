@@ -24,7 +24,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="less"
 export OPENER="xdg-open"
-
+export TERM=linux
 # fzf
 export FZF_DEFAULT_COMMAND='fd -H -L --ignore-file $HOME/.gitignore'
 export FZF_DEFAULT_OPTS="--height 90% --layout=reverse --bind=alt-j:down,alt-k:up,alt-i:toggle+down --border --preview 'bat --style=numbers --color=always --line-range :500 {}'"
